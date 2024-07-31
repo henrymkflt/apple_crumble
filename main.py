@@ -1,3 +1,4 @@
+""" Experimental script."""
 from openai import OpenAI
 
 client = OpenAI(
@@ -6,34 +7,35 @@ client = OpenAI(
 )
 
 def chatbot():
-  # Create a list to store all the messages for context
-  messages = [
-    {"role": "system", "content": "You are a helpful assistant."},
-  ]
-  
-  # Keep repeating the following
-  while True:
-    # Prompt user for input
-    message = input("User: ")
+    """Chatbot functionality."""
+    # Create a list to store all the messages for context
+    messages = [
+      {"role": "system", "content": "You are a helpful assistant."},
+    ]
 
-    # Exit program if user inputs "quit"
-    if message.lower() == "quit":
-      break
+    # Keep repeating the following
+    while True:
+        # Prompt user for input
+        message = input("User: ")
 
-    # Add each new message to the list
-    messages.append({"role": "user", "content": message})
+        # Exit program if user inputs "quit"
+        if message.lower() == "quit":
+            break
 
-    # Request gpt-3.5-turbo for chat completion
-    response = client.chat.completions.create(
-      model="llava-v1.5",
-      messages=messages
-    )
+        # Add each new message to the list
+        messages.append({"role": "user", "content": message})
 
-    # Print the response and add it to the messages list
-    chat_message = response.choices[0].message.content
-    print(f"Bot: {chat_message}")
-    messages.append({"role": "assistant", "content": chat_message})
+        # Request gpt-3.5-turbo for chat completion
+        response = client.chat.completions.create(
+          model="llava-v1.5",
+          messages=messages
+        )
+
+        # Print the response and add it to the messages list
+        chat_message = response.choices[0].message.content
+        print(f"Bot: {chat_message}")
+        messages.append({"role": "assistant", "content": chat_message})
 
 if __name__ == "__main__":
-  print("Start chatting with the bot (type 'quit' to stop)!")
-  chatbot()
+    print("Start chatting with the bot (type 'quit' to stop)!")
+    chatbot()
