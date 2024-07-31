@@ -1,6 +1,6 @@
 """ Experimental script."""
 from openai import OpenAI
-
+# pylint: disable-next=R0801
 client = OpenAI(
   api_key="not_needed",
   base_url="http://1.1.1.1:8080/v1"
