@@ -1,4 +1,4 @@
-""" Experimental script."""
+"""Experimental script."""
 from openai import OpenAI
 # pylint: disable-next=R0801
 client = OpenAI(
